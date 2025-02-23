@@ -1,5 +1,6 @@
 """
 Playwright browser on steroids.
+.
 """
 
 import asyncio
