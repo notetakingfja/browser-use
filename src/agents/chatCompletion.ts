@@ -11,7 +11,8 @@ class OllamaAPI {
 
     async complete(prompt: string): Promise<string> {
         try {
-            const response = await axios.post(`${this.baseURL}/completions`, {
+            const response = await axios.post(`${this.baseURL}/api/generate`, {
+                model: 'llama3.2', // Assuming a default model, you might want to make this configurable
                 prompt,
                 max_tokens: 150
             }, {
@@ -20,7 +21,7 @@ class OllamaAPI {
                     'Content-Type': 'application/json'
                 }
             });
-            return response.data.choices[0].text.trim();
+            return response.data.response.trim(); // Adjusted the response key based on the API documentation
         } catch (error) {
             console.error('Error calling Ollama API:', error);
             throw error;
